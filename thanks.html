@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thank you · JUDASACA</title>
+<meta name="description" content="Payment confirmation for your order at judasaca.art.">
+<link rel="canonical" href="https://judasaca.art/thanks.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="JUDASACA">
+<meta property="og:title" content="Thank you · JUDASACA">
+<meta property="og:description" content="Payment confirmation for your order at judasaca.art.">
+<meta property="og:url" content="https://judasaca.art/thanks.html">
+<meta property="og:image" content="https://judasaca.art/img/oil-city-woodstock-sm.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/judasaca-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="barra">
+    <button class="trazo" id="abrir-menu" aria-label="Menu" aria-expanded="false">
+      <svg viewBox="0 0 30 22" aria-hidden="true" width="21" height="15">
+        <path d="M2.4 4.1c6.1-1.2 15.7-1.5 25.2.3"/>
+        <path d="M3.1 11c7.6-.9 14.9-.7 23.8.4"/>
+        <path d="M2.7 17.9c5.3-1.3 14.4-1.4 24.6.2"/>
+      </svg>
+    </button>
+    <a class="marca" href="index.html" aria-label="JUDASACA, home">
+      <img src="img/judasaca-logo.png" alt="JUDASACA" width="900" height="673">
+    </a>
+    <button class="carro" id="carro" aria-label="Cart">
+      <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M1 2h3.4l2.6 12.4h11.6L22 6H6"/></svg>
+      <span class="n" id="carro-n">0</span>
+    </button>
+  </div>
+</header>
+
+<aside class="menu-panel" id="menu-panel" aria-label="Menu" aria-hidden="true">
+  <button class="x" id="cerrar-menu" aria-label="Close">&times;</button>
+  <nav id="nav">
+      <a href="about.html">About</a>
+      <a href="art.html">Art</a>
+      <a href="shop.html">Shop</a>
+      <a href="cv.html">CV</a>
+      <a href="contact.html">Contact</a>
+  </nav>
+  <div class="abajo">
+    Bogotá, Colombia<br>
+    <a href="mailto:contact@judasaca.art">contact@judasaca.art</a><br>
+    <a href="https://www.instagram.com/judasaca" rel="noopener">@judasaca</a>
+  </div>
+</aside>
+
+<main>
+  <section>
+    <div class="wrap estrecho prosa gracias">
+      <div class="tit centrado">
+        <div class="eti">Order</div>
+        <h2 id="titulo-gracias">Thank you</h2>
+      </div>
+      <p id="mensaje-gracias" style="text-align:center">Juan will write to you from contact@judasaca.art to
+        confirm the work and arrange shipping to your city.</p>
+      <p class="chico" id="referencia-gracias" style="color:var(--tenue);text-align:center"></p>
+
+      <!-- La direccion se pide AQUI y no antes de pagar. Antes del pago cada
+           campo es una excusa para no comprar; despues del pago el comprador ya
+           esta contento y quiere que le llegue el cuadro. -->
+      <div id="caja-envio" hidden>
+        <h3 style="margin-top:38px">Where should it go?</h3>
+        <p>Juan ships worldwide. Leave the address and he confirms the cost and the
+          date the same day.</p>
+        <form class="forma" id="form-envio">
+          <div class="campo">
+            <label for="e-nombre">Full name</label>
+            <input id="e-nombre" name="nombre" type="text" required autocomplete="name">
+          </div>
+          <div class="dos-campos">
+            <div class="campo">
+              <label for="e-email">Email</label>
+              <input id="e-email" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="campo">
+              <label for="e-telefono">Phone</label>
+              <input id="e-telefono" name="telefono" type="tel" required autocomplete="tel">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="e-direccion">Address</label>
+            <input id="e-direccion" name="direccion" type="text" required autocomplete="street-address">
+          </div>
+          <div class="dos-campos">
+            <div class="campo">
+              <label for="e-ciudad">City</label>
+              <input id="e-ciudad" name="ciudad" type="text" required autocomplete="address-level2">
+            </div>
+            <div class="campo">
+              <label for="e-pais">Country</label>
+              <input id="e-pais" name="pais" type="text" required autocomplete="country-name">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="e-notas">Anything Juan should know</label>
+            <input id="e-notas" name="notas" type="text" autocomplete="off">
+          </div>
+          <button class="btn lleno enviar" type="submit">Send shipping details</button>
+          <p class="aviso-forma" id="aviso-envio" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <p style="margin-top:34px;text-align:center"><a class="btn" href="art.html">Back to the works</a></p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var p = new URLSearchParams(window.location.search);
+  var estado = (p.get('bold-tx-status') || '').toLowerCase();
+  var orden = p.get('bold-order-id');
+  var t = document.getElementById('titulo-gracias');
+  var m = document.getElementById('mensaje-gracias');
+  var r = document.getElementById('referencia-gracias');
+  var caja = document.getElementById('caja-envio');
+
+  // Respaldo: si Bold no devolviera la referencia en la URL, se recupera la que
+  // el sitio guardo justo antes de abrir la pasarela.
+  var guardada = null;
+  try { guardada = JSON.parse(localStorage.getItem('judasaca-orden') || 'null'); } catch(e) {}
+  if (!orden && guardada && guardada.id) orden = guardada.id;
+
+  var aprobada = (estado === 'approved');
+
+  if (aprobada) {
+    t.textContent = 'Thank you';
+    m.textContent = 'Your payment went through. One last thing and it is done.';
+  } else if (estado === 'rejected' || estado === 'failed') {
+    t.textContent = 'That payment did not go through';
+    m.textContent = 'Nothing has been charged. You can try again, or write to contact@judasaca.art '
+      + 'and Juan will sort it out with you directly.';
+  } else if (estado) {
+    t.textContent = 'Your payment is being processed';
+    m.textContent = 'Bold has not confirmed it yet. As soon as it settles, Juan will write '
+      + 'to you from contact@judasaca.art.';
+  }
+  if (orden) r.textContent = 'Reference: ' + orden;
+
+  /* El webhook de Bold puede tardar hasta diez minutos. El comprador esta aqui
+     ahora. Se le avisa al Worker para que marque la obra enseguida; el Worker
+     no se fia de esto y lo verifica contra Bold antes de hacer nada. */
+  if (orden && aprobada && window.fetch) {
+    fetch('https://judasaca-bold.judasaca-art.workers.dev/confirmar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderId: orden })
+    }).catch(function(){ });
+
+    // Lo pagado sale del carrito. Si no, sigue ahi tentando a pagarlo otra vez.
+    try {
+      var comprados = (guardada && guardada.slugs) || [];
+      var carro = JSON.parse(localStorage.getItem('judasaca-carro') || '[]');
+      localStorage.setItem('judasaca-carro', JSON.stringify(
+        carro.filter(function(s){ return comprados.indexOf(s) < 0; })));
+    } catch(e) {}
+  }
+
+  if (!aprobada || !orden) return;
+  caja.hidden = false;
+
+  var f = document.getElementById('form-envio');
+  var aviso = document.getElementById('aviso-envio');
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var boton = f.querySelector('button[type=submit]');
+    boton.disabled = true;
+    aviso.className = 'aviso-forma';
+    aviso.textContent = 'Sending…';
+
+    var datos = { orderId: orden };
+    ['nombre','email','telefono','direccion','ciudad','pais','notas']
+      .forEach(function(k){ datos[k] = (f[k] && f[k].value || '').trim(); });
+
+    fetch('https://judasaca-bold.judasaca-art.workers.dev/datos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos)
+    })
+    .then(function(rr){ return rr.json(); })
+    .then(function(d){
+      if (!d || !d.ok) throw new Error('no');
+      f.innerHTML = '';
+      aviso.className = 'aviso-forma ok';
+      aviso.textContent = 'Got it. Juan has your address and will write from contact@judasaca.art '
+        + 'with the shipping date.';
+      f.appendChild(aviso);
+    })
+    .catch(function(){
+      boton.disabled = false;
+      aviso.className = 'aviso-forma mal';
+      aviso.textContent = 'That did not save. Please send your address to contact@judasaca.art '
+        + 'quoting the reference above.';
+    });
+  });
+})();
+</script>
+
+<footer>
+  <div class="wrap pie">
+    <div class="col"><b>Artwork</b>
+      <a href="art.html">Original works</a>
+      <a href="shop.html">Shop</a>
+      <a href="cv.html">CV</a>
+    </div>
+    <div class="col"><b><a class="tit-enlace" href="https://www.instagram.com/303artstudio" target="_blank"
+      rel="noopener">303 Studio</a></b>
+      <a href="about.html">About the artist</a>
+      <a href="contact.html">Contact</a>
+      <a href="mailto:contact@judasaca.art">contact@judasaca.art</a>
+    </div>
+    <div class="col"><b>Follow</b>
+      <a href="https://www.instagram.com/judasaca" target="_blank" rel="noopener">Instagram · @judasaca</a>
+      <a href="https://www.tiktok.com/@judasaca" target="_blank" rel="noopener">TikTok · @judasaca</a>
+      <a href="https://www.instagram.com/303artstudio" target="_blank" rel="noopener">Instagram · @303artstudio</a>
+    </div>
+    <div class="col fin">JUDASACA · Juan Salazar<br>Bogotá, Colombia<br>
+      <span style="opacity:.7">nothing stays the same</span>
+      <!-- Dice solo lo que es verdad. El pago ocurre dentro de la pasarela de
+           Bold, no en esta pagina, asi que el numero de la tarjeta no pasa por
+           aqui ni queda en ningun sitio nuestro. No se reclama ninguna
+           certificacion que no tengamos. -->
+      <span class="seguro">Payments are processed by Bold.<br>
+        Card details are entered on Bold's gateway and never pass through this site.<br>
+        <a href="privacy.html">Privacy</a></span></div>
+  </div>
+</footer>
+
+<div class="velo" id="velo"></div>
+<aside class="panel" id="panel" aria-label="Cart" aria-hidden="true">
+  <div class="alto"><h2>Selected works</h2><button class="x" id="cerrar-carro" aria-label="Close">&times;</button></div>
+  <div class="lista" id="carro-lista"></div>
+  <div class="bajo">
+    <div class="total"><span>Total</span><span id="carro-total">USD 0</span></div>
+    <div class="pagar-carro" id="carro-pagar"></div>
+    <button class="btn lleno" id="carro-pedir" type="button">Checkout</button>
+    <p class="nota" id="carro-nota">Payment opens on Bold's gateway. Card details are
+      entered there and never pass through this site. We ask where to ship afterwards.</p>
+  </div>
+</aside>
+
+<div class="lupa" id="lupa" role="dialog" aria-modal="true" aria-label="Artwork">
+  <button class="cerrar" aria-label="Close">&times;</button>
+  <button class="pasar ant" aria-label="Previous">&#8249;</button>
+  <button class="pasar sig" aria-label="Next">&#8250;</button>
+  <div class="contador" id="lupa-n"></div>
+  <figure><img id="lupa-img" alt="" draggable="false"><figcaption id="lupa-pie"></figcaption></figure>
+  <div class="gesto">Swipe to browse · pinch or double tap to zoom</div>
+</div>
+
+<script>
+/* Menu de celular y lupa de obras. Si el JavaScript falla, los enlaces de las
+   obras siguen abriendo la imagen grande por su cuenta. */
+(function(){
+  var b=document.getElementById('abrir-menu'), p=document.getElementById('menu-panel'),
+      v=document.getElementById('velo'), x=document.getElementById('cerrar-menu');
+  if(!b||!p) return;
+  function abrir(){ p.classList.add('abierto'); v.classList.add('abierto');
+    p.setAttribute('aria-hidden','false'); b.setAttribute('aria-expanded','true');
+    document.body.style.overflow='hidden'; x.focus(); }
+  function cerrar(){ p.classList.remove('abierto'); v.classList.remove('abierto');
+    p.setAttribute('aria-hidden','true'); b.setAttribute('aria-expanded','false');
+    document.body.style.overflow=''; b.focus(); }
+  b.addEventListener('click', abrir);
+  x.addEventListener('click', cerrar);
+  v.addEventListener('click', cerrar);
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && p.classList.contains('abierto')) cerrar(); });
+})();
+
+(function(){
+  var enlaces=[].slice.call(document.querySelectorAll('[data-lupa]'));
+  if(!enlaces.length) return;
+  var caja=document.getElementById('lupa'), img=document.getElementById('lupa-img'),
+      pie=document.getElementById('lupa-pie'), cont=document.getElementById('lupa-n'),
+      i=0, antes=null;
+
+  /* Estado del gesto. 'e' es la escala, 'x' e 'y' el desplazamiento dentro de
+     la imagen cuando esta ampliada. */
+  var e=1, x=0, y=0, px=0, py=0, pe=1, arrastra=false, pellizco=0, dedos={},
+      partioEn=0, eje='', movido=false;
+
+  function pinta(trans){
+    img.style.transition = trans ? 'transform .28s cubic-bezier(.2,.8,.3,1)' : 'none';
+    img.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scale(' + e + ')';
+  }
+  function reinicia(trans){ e=1; x=0; y=0; pinta(trans); caja.classList.remove('ampliada'); }
+
+  /* Las vecinas se piden por adelantado: al deslizar, la siguiente ya esta. */
+  function precarga(n){
+    [n-1, n+1].forEach(function(k){
+      var a=enlaces[(k+enlaces.length)%enlaces.length];
+      if(a){ var im=new Image(); im.src=a.getAttribute('href'); }
+    });
+  }
+
+  function mostrar(n, dir){
+    i=(n+enlaces.length)%enlaces.length;
+    var a=enlaces[i];
+    if(dir){
+      img.style.transition='none';
+      img.style.opacity='0';
+      img.style.transform='translate3d(' + (dir*40) + 'px,0,0)';
+    }
+    img.src=a.getAttribute('href');
+    img.alt=a.getAttribute('data-tit');
+    pie.textContent=a.getAttribute('data-tit')+' · '+a.getAttribute('data-fic');
+    if(cont) cont.textContent=(i+1)+' / '+enlaces.length;
+    reinicia(false);
+    requestAnimationFrame(function(){
+      img.style.transition='transform .3s cubic-bezier(.2,.8,.3,1),opacity .22s';
+      img.style.opacity='1'; img.style.transform='translate3d(0,0,0) scale(1)';
+    });
+    precarga(i);
+  }
+
+  function abrir(n,orig){
+    antes=orig; mostrar(n);
+    caja.classList.add('viendo');
+    document.body.style.overflow='hidden';
+    caja.querySelector('.cerrar').focus();
+  }
+  function cerrar(){
+    caja.classList.remove('viendo','ampliada');
+    document.body.style.overflow='';
+    reinicia(false);
+    if(antes) antes.focus();
+  }
+
+  /* ── Gestos ────────────────────────────────────────────────────────────
+     Un dedo: si la obra esta a tamano normal, arrastrar de lado pasa a la
+     siguiente y arrastrar hacia abajo cierra. Si esta ampliada, arrastrar
+     mueve la imagen. Dos dedos: pellizco para acercar.
+     Doble toque: acerca y aleja en el punto tocado. */
+  function dist(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
+  function dedosArr(){ return Object.keys(dedos).map(function(k){ return dedos[k]; }); }
+
+  img.addEventListener('pointerdown', function(ev){
+    img.setPointerCapture(ev.pointerId);
+    dedos[ev.pointerId]={x:ev.clientX, y:ev.clientY};
+    var d=dedosArr();
+    if(d.length===1){
+      arrastra=true; movido=false; eje='';
+      px=ev.clientX-x; py=ev.clientY-y; partioEn=ev.clientX;
+    } else if(d.length===2){
+      arrastra=false; pellizco=dist(d[0],d[1]); pe=e;
+    }
+  });
+
+  img.addEventListener('pointermove', function(ev){
+    if(!dedos[ev.pointerId]) return;
+    dedos[ev.pointerId]={x:ev.clientX, y:ev.clientY};
+    var d=dedosArr();
+
+    if(d.length===2 && pellizco){
+      e=Math.min(5, Math.max(1, pe * dist(d[0],d[1]) / pellizco));
+      caja.classList.toggle('ampliada', e>1.02);
+      pinta(false); return;
+    }
+    if(!arrastra) return;
+    ev.preventDefault();
+    var dx=ev.clientX-px-x, dy=ev.clientY-py-y;
+
+    if(e>1.02){ x=ev.clientX-px; y=ev.clientY-py; pinta(false); movido=true; return; }
+
+    /* A tamano normal el primer movimiento decide el eje, para que al deslizar
+       de lado no se dispare el cierre y al revés tampoco. */
+    if(!eje && (Math.abs(dx)>6 || Math.abs(dy)>6))
+      eje = Math.abs(dx)>Math.abs(dy) ? 'h' : 'v';
+    if(eje==='h'){ x=ev.clientX-px; y=0; }
+    else if(eje==='v'){ y=Math.max(0, ev.clientY-py); x=0; e=Math.max(.85, 1-y/900); }
+    movido=true; pinta(false);
+  }, {passive:false});
+
+  function suelta(ev){
+    delete dedos[ev.pointerId];
+    var quedan=dedosArr().length;
+    if(quedan===1){ var d=dedosArr()[0]; px=d.x-x; py=d.y-y; arrastra=true; eje=''; }
+    if(quedan>0){ pellizco=0; return; }
+    arrastra=false; pellizco=0;
+    if(e>1.02){ caja.classList.add('ampliada'); return; }
+
+    if(eje==='h' && Math.abs(x)>70){ mostrar(i + (x<0?1:-1), x<0?1:-1); eje=''; return; }
+    if(eje==='v' && y>110){ cerrar(); return; }
+    eje=''; reinicia(true);
+  }
+  img.addEventListener('pointerup', suelta);
+  img.addEventListener('pointercancel', suelta);
+
+  var ultimoToque=0;
+  img.addEventListener('click', function(ev){
+    var ahora=Date.now();
+    if(movido){ movido=false; return; }
+    if(ahora-ultimoToque<300){
+      if(e>1.02){ reinicia(true); }
+      else{
+        var r=img.getBoundingClientRect();
+        e=2.6;
+        x=(r.left+r.width/2-ev.clientX)*(e-1);
+        y=(r.top+r.height/2-ev.clientY)*(e-1);
+        caja.classList.add('ampliada'); pinta(true);
+      }
+    }
+    ultimoToque=ahora;
+  });
+
+  /* La rueda del mouse tambien acerca, para quien esta en computador. */
+  img.addEventListener('wheel', function(ev){
+    if(!caja.classList.contains('viendo')) return;
+    ev.preventDefault();
+    e=Math.min(5, Math.max(1, e - ev.deltaY*0.0022));
+    if(e<=1.02){ reinicia(false); } else { caja.classList.add('ampliada'); pinta(false); }
+  }, {passive:false});
+
+  enlaces.forEach(function(a,n){
+    a.addEventListener('click',function(ev){ ev.preventDefault(); abrir(n,a); });
+  });
+  caja.querySelector('.cerrar').addEventListener('click',cerrar);
+  caja.querySelector('.ant').addEventListener('click',function(){ mostrar(i-1,-1); });
+  caja.querySelector('.sig').addEventListener('click',function(){ mostrar(i+1, 1); });
+  caja.addEventListener('click',function(ev){ if(ev.target===caja) cerrar(); });
+  document.addEventListener('keydown',function(ev){
+    if(!caja.classList.contains('viendo')) return;
+    if(ev.key==='Escape') cerrar();
+    if(ev.key==='ArrowLeft') mostrar(i-1,-1);
+    if(ev.key==='ArrowRight') mostrar(i+1, 1);
+    if(ev.key==='0') reinicia(true);
+  });
+})();
+
+/* ── Carrito ──────────────────────────────────────────────────────────
+   Guarda lo elegido en el propio navegador y arma un correo con la lista.
+   No cobra nada todavia: cuando existan los enlaces de pago de Stripe,
+   este mismo carrito puede mandar al checkout. */
+(function(){
+  var CAT = {"artwork-incoming": {"t": "Artwork Incoming", "m": "Coming soon", "usd": 0}, "snoopin-aint-easy": {"t": "Snoopin Ain’t Easy", "m": "100 × 100 cm", "usd": 2000}, "oil-city-woodstock": {"t": "Oil City Woodstock", "m": "100 × 100 cm", "usd": 1950}, "sunday-snoops": {"t": "Sunday, Snoops", "m": "100 × 100 cm", "usd": 1950}, "mango-og": {"t": "Mango OG", "m": "95 × 95 cm", "usd": 1950}, "original-pastel-disney": {"t": "Original Pastel Disney", "m": "100 × 100 cm", "usd": 1950}, "blue-thoughts-rat": {"t": "Blue Thoughts Rat", "m": "80 cm diameter", "usd": 1235}, "smiling-ratsquiat-blue-crown": {"t": "Smiling Ratsquiat, Blue Crown", "m": "50 × 50 cm", "usd": 975}, "oil-woodstock": {"t": "Oil Woodstock", "m": "50 × 50 cm", "usd": 975}, "cloud-city-snoops": {"t": "Cloud City Snoops", "m": "50 × 50 cm", "usd": 1000}, "new-york-street-snoops": {"t": "New York Street Snoops", "m": "50 × 50 cm", "usd": 975}, "city-rounds-icon": {"t": "City Rounds Icon", "m": "50 × 50 cm", "usd": 1000}, "city-famous-rat": {"t": "City Famous Rat", "m": "175 × 80 cm", "usd": 2600}, "broken-icon": {"t": "Broken Icon", "m": "100 × 100 cm", "usd": 1950}, "smiling-ratsquiat-yellow-crown": {"t": "Smiling Ratsquiat, Yellow Crown", "m": "50 × 50 cm", "usd": 975}, "woodstocks-on-fire": {"t": "Woodstock’s on Fire", "m": "Framed 45 × 40 cm", "usd": 250}, "out-in-the-beach-rat": {"t": "Out in the Beach Rat", "m": "Framed", "usd": 180}, "out-in-the-city-woodstock": {"t": "Out in the City, Woodstock", "m": "Framed 45 × 40 cm", "usd": 250}, "colour-pop-snoops": {"t": "Colour Pop Snoops", "m": "Framed 45 × 40 cm", "usd": 250}, "icon-kiss": {"t": "Icon Kiss", "m": "Framed 45 × 40 cm", "usd": 250}, "palometa-tribute": {"t": "Palometa Tribute", "m": "Framed 45 × 40 cm", "usd": 250}, "city-of-rats": {"t": "City of Rats", "m": "Framed 45 × 40 cm", "usd": 250}, "abstract-reality-icon": {"t": "Abstract Reality Icon", "m": "35 × 25 cm", "usd": 600}, "everything-will-be-ok-jules": {"t": "Everything Will Be OK, Jules", "m": "Framed 45 × 40 cm", "usd": 250}, "judasaca-socks": {"t": "Broken Icon × Bitcoin Rat Socks", "m": "Two pairs", "usd": 30}};
+  var LLAVE='judasaca-carro';
+  var carro=[];
+  try{ carro=JSON.parse(localStorage.getItem(LLAVE)||'[]'); }catch(e){ carro=[]; }
+  carro = carro.filter(function(s){ return CAT[s]; });
+
+  var bot=document.getElementById('carro'), num=document.getElementById('carro-n'),
+      panel=document.getElementById('panel'), velo=document.getElementById('velo'),
+      lista=document.getElementById('carro-lista'), total=document.getElementById('carro-total'),
+      pedir=document.getElementById('carro-pedir'), nota=document.getElementById('carro-nota');
+  if(!bot||!panel) return;
+
+  function guardar(){ try{ localStorage.setItem(LLAVE, JSON.stringify(carro)); }catch(e){} }
+  function dinero(n){ return 'USD ' + n.toLocaleString('en-US'); }
+
+  function pintar(){
+    num.textContent = carro.length;
+    if(!carro.length){
+      lista.innerHTML = '<p class="vacio">Nothing selected yet.</p>';
+      total.textContent = dinero(0);
+      pedir.disabled = true;
+      return;
+    }
+    pedir.disabled = false;
+    var suma = 0, h = '';
+    carro.forEach(function(sl){
+      var o = CAT[sl]; suma += o.usd;
+      h += '<div class="item"><img src="img/'+sl+'-sm.webp" alt="">'
+        +  '<div class="d"><div class="t">'+o.t+'</div>'
+        +  '<div class="f">'+o.m+'</div>'
+        +  '<div class="p">'+dinero(o.usd)+'</div>'
+        +  '<button class="quitar" data-q="'+sl+'">Remove</button></div></div>';
+    });
+    lista.innerHTML = h;
+    total.textContent = dinero(suma);
+  }
+
+  /* Checkout de verdad: el carrito cobra, no manda un correo. Se firma la
+     lista contra el Worker (que suma el total y decide el precio) y se abre
+     Bold por el total, en una sola orden. */
+  function cobrar(){
+    if (!carro.length || !window.fetch || !window.JUDPAGO) return;
+    pedir.disabled = true;
+    pedir.textContent = 'One moment…';
+
+    fetch('https://judasaca-bold.judasaca-art.workers.dev/firma', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ modo: 'carro', slugs: carro })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d || !d.carro) throw new Error('sin-orden');
+
+      // Si algo se vendio mientras el comprador miraba, el Worker lo deja
+      // fuera de la firma. Se le dice, se le quita del carrito y se cobra lo
+      // que si esta: nadie paga por un cuadro que ya no existe.
+      var firmadas = d.carro.slugs || [];
+      var caidas = carro.filter(function(s){ return firmadas.indexOf(s) < 0; });
+      if (caidas.length) {
+        carro = firmadas.slice();
+        guardar(); pintar();
+        nota.textContent = caidas.length === 1
+          ? CAT[caidas[0]].t + ' was just sold and has been removed. Paying for the rest.'
+          : caidas.length + ' works were just sold and have been removed. Paying for the rest.';
+        nota.className = 'nota aviso';
+      }
+
+      pedir.style.display = 'none';
+      window.JUDPAGO.abrir(document.getElementById('carro-pagar'), d.carro, location.href);
+    })
+    .catch(function(){
+      pedir.disabled = false;
+      pedir.textContent = 'Checkout';
+      nota.className = 'nota aviso';
+      nota.innerHTML = 'Checkout is not responding. Write to '
+        + '<a href="mailto:contact@judasaca.art">contact@judasaca.art</a> and Juan will take it from there.';
+    });
+  }
+
+  function abrir(){ panel.classList.add('abierto'); velo.classList.add('abierto');
+    panel.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function cerrar(){ panel.classList.remove('abierto'); velo.classList.remove('abierto');
+    panel.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+
+  bot.addEventListener('click', function(){ pintar(); abrir(); });
+  pedir.addEventListener('click', cobrar);
+  velo.addEventListener('click', cerrar);
+  document.getElementById('cerrar-carro').addEventListener('click', cerrar);
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && panel.classList.contains('abierto')) cerrar(); });
+
+  lista.addEventListener('click', function(e){
+    var q=e.target.getAttribute && e.target.getAttribute('data-q');
+    if(!q) return;
+    carro = carro.filter(function(s){ return s!==q; });
+    guardar(); pintar();
+  });
+
+  document.querySelectorAll('.add').forEach(function(b){
+    b.addEventListener('click', function(){
+      var sl=b.getAttribute('data-slug');
+      if(carro.indexOf(sl)<0) carro.push(sl);
+      guardar(); pintar(); abrir();
+    });
+  });
+
+  pintar();
+})();
+
+/* ── Pago ───────────────────────────────────────────────────────────────
+   Un solo motor de pago para toda la pagina: lo usan los botones Buy de cada
+   obra y tambien el carrito.
+
+   Flujo, corto a proposito: clic en Buy -> la pasarela de Bold se abre encima
+   del sitio -> paga. Nada de formularios antes. La direccion de envio se pide
+   DESPUES, en la pagina de gracias, cuando la plata ya entro y el comprador
+   no puede arrepentirse a mitad de camino por tener que teclear.
+
+   El navegador NUNCA manda el precio: manda slugs, y el Worker decide cuanto
+   se cobra y lo firma. Un precio que mande el atacante no vale nada aunque
+   venga firmado, porque estaria firmando su propia mentira. */
+window.JUDPAGO = (function(){
+  var libreria = null, abriendo = false;
+
+  /* Devuelve una promesa que solo se cumple cuando la libreria esta lista de
+     verdad. Se guarda para que dos clics no la carguen dos veces. */
+  function cargarLibreria(){
+    if (libreria) return libreria;
+    libreria = new Promise(function(ok, mal){
+      if (window.BoldCheckout) return ok();
+      var s = document.createElement('script');
+      s.src = 'https://checkout.bold.co/library/boldPaymentButton.js';
+      s.onload = function(){ window.BoldCheckout ? ok() : mal(); };
+      s.onerror = mal;
+      document.head.appendChild(s);
+    });
+    return libreria;
+  }
+
+  /* Se recuerda la orden para que la pagina de gracias sepa que se acaba de
+     pagar: ahi se le pide la direccion y se marcan las obras como vendidas. */
+  function recordar(orden){
+    try {
+      localStorage.setItem('judasaca-orden', JSON.stringify({
+        id: orden.orderId,
+        slugs: orden.slugs || [],
+        amount: orden.amount,
+        description: orden.description,
+        t: Date.now()
+      }));
+    } catch(e) {}
+  }
+
+  /* Abre la pasarela directamente, sin dibujar ningun boton de Bold.
+
+     Antes esto inyectaba un <script data-bold-button> y luego le hacia clic
+     solo. Eso era una carrera perdida: la libreria de Bold busca esos scripts
+     cuando ELLA carga, asi que segun quien llegara primero unas veces salia el
+     boton y otras veces no salia nada. Con la API (new BoldCheckout().open())
+     no hay nada que esperar ni nada que adivinar: se abre y ya. */
+  function abrir(destino, orden, origen){
+    if (abriendo) return;
+    abriendo = true;
+    recordar(orden);
+
+    cargarLibreria().then(function(){
+      new window.BoldCheckout({
+        orderId: orden.orderId,
+        currency: orden.currency,
+        amount: orden.amount,
+        apiKey: '2heS56eZeRZj1n1B8NDPF9_LA2aDpNbyNBJOoG65qWI',
+        integritySignature: orden.signature,
+        description: orden.description,
+        redirectionUrl: 'https://judasaca.art/thanks.html',
+        originUrl: origen || 'https://judasaca.art/art.html',
+        // Embedded: la pasarela abre encima del sitio y el comprador no se va.
+        renderMode: 'embedded'
+      }).open();
+      abriendo = false;
+    }).catch(function(){
+      abriendo = false;
+      if (destino) {
+        destino.innerHTML = '<span class="fallo">Checkout could not open. '
+          + 'Write to <a href="mailto:contact@judasaca.art">contact@judasaca.art</a>.</span>';
+      }
+    });
+  }
+
+  /* Una obra vendida se apaga entera: sello, ficha tachada y sin botones. */
+  function marcarVendidas(lista){
+    (lista || []).forEach(function(slug){
+      var hueco = document.querySelector('.pagar[data-obra="' + slug + '"]');
+      if (!hueco) return;
+      var obra = hueco.closest('.obra');
+      if (!obra || obra.classList.contains('agotada')) return;
+      obra.classList.add('agotada');
+      var marco = obra.querySelector('.marco');
+      if (marco && !marco.querySelector('.sello')) {
+        marco.classList.add('vendido');
+        var s = document.createElement('span');
+        s.className = 'sello';
+        s.setAttribute('aria-hidden', 'true');
+        s.innerHTML = '<i></i><b>Sold</b><i></i>';
+        marco.appendChild(s);
+      }
+      var acciones = obra.querySelector('.acciones');
+      if (acciones) acciones.innerHTML = '<span class="sello-vendida">Sold</span>';
+    });
+  }
+
+  return { abrir: abrir, marcarVendidas: marcarVendidas, firmador: 'https://judasaca-bold.judasaca-art.workers.dev' };
+})();
+
+/* ── Buy en cada obra ───────────────────────────────────────────────────
+   Solo corre en paginas con huecos .pagar (hoy, la de obras). */
+(function(){
+  var huecos = [].slice.call(document.querySelectorAll('.pagar[data-obra]'));
+  if (!huecos.length || !window.fetch) return;
+
+  var slugs = huecos.map(function(h){ return h.getAttribute('data-obra'); });
+  var firmadas = {};   // slug -> orden ya firmada por el Worker
+
+  function firmar(lista){
+    return fetch('https://judasaca-bold.judasaca-art.workers.dev/firma', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slugs: lista })
+    }).then(function(r){ return r.json(); });
+  }
+
+  /* Precarga. Corre al cargar la pagina y suele llegar antes de que nadie
+     haga clic, asi que el boton abre Bold de una. Si Cloudflare esta frio y
+     tarda, no importa: el boton ya esta pintado y el clic firma solo. */
+  firmar(slugs).then(function(d){
+    if (d && d.vendidas) window.JUDPAGO.marcarVendidas(d.vendidas);
+    if (d && d.obras) firmadas = d.obras;
+  }).catch(function(){ });
+
+  function abrirObra(boton, slug){
+    var hueco = boton.parentNode;
+    boton.disabled = true;
+    boton.textContent = 'Opening…';
+
+    var orden = firmadas[slug];
+    if (orden) {
+      orden.slugs = [slug];
+      window.JUDPAGO.abrir(hueco, orden, location.href);
+      return;
+    }
+    // Todavia no habia llegado la precarga: se firma esta sola y se abre.
+    firmar([slug]).then(function(d){
+      if (d && d.vendidas) window.JUDPAGO.marcarVendidas(d.vendidas);
+      var o = d && d.obras && d.obras[slug];
+      if (!o) throw new Error('sin-orden');
+      firmadas[slug] = o;
+      o.slugs = [slug];
+      window.JUDPAGO.abrir(hueco, o, location.href);
+    }).catch(function(){
+      boton.disabled = false;
+      boton.textContent = 'Buy';
+      hueco.insertAdjacentHTML('beforeend',
+        '<span class="fallo">Could not open checkout. '
+        + 'Write to <a href="mailto:contact@judasaca.art">contact@judasaca.art</a>.</span>');
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest && e.target.closest('.pagar .comprar');
+    if (!b || b.disabled) return;
+    abrirObra(b, b.getAttribute('data-obra'));
+  });
+})();
+</script>
+</body>
+</html>
