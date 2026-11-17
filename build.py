@@ -56,50 +56,50 @@ OBRAS = [
       proxima=True,
       nota='50% of this sale will be donated to St Jude Children’s Research Hospital'),
  dict(slug='snoopin-aint-easy',    titulo='Snoopin Ain’t Easy',
-      tec='Acrylics and spray on canvas',     med='100 × 100 cm', usd=2000, buy='', vendida=False),
+      tec='Acrylics and spray on canvas',     med='100 × 100 cm', usd=2500, buy='', vendida=False),
  dict(slug='rendered-reality',     titulo='Rendered Reality',
       tec='Mixed media on canvas',            med='75 × 100 cm', usd=2200, buy='', vendida=True,
       nota='Exhibited at Jutta Gallery, New York City · Space Between Worlds'),
  dict(slug='oil-city-woodstock',   titulo='Oil City Woodstock',
-      tec='Acrylics and oil stick on canvas', med='100 × 100 cm', usd=1950, buy='', vendida=False),
+      tec='Acrylics and oil stick on canvas', med='100 × 100 cm', usd=2500, buy='', vendida=False),
  dict(slug='sunday-snoops',        titulo='Sunday, Snoops',
-      tec='Acrylics and spray on canvas',     med='100 × 100 cm', usd=1950, buy='', vendida=False),
+      tec='Acrylics and spray on canvas',     med='100 × 100 cm', usd=2500, buy='', vendida=False),
  dict(slug='pop-art-rat',          titulo='Pop Art Rat',
       tec='Acrylics and oil stick on canvas', med='100 × 100 cm', usd=1950, buy='', vendida=True),
  dict(slug='mango-og',             titulo='Mango OG',
-      tec='Acrylics and oil stick on canvas', med='95 × 95 cm', usd=1950, buy='', vendida=False),
+      tec='Acrylics and oil stick on canvas', med='95 × 95 cm', usd=2500, buy='', vendida=False),
  dict(slug='original-pastel-disney', titulo='Original Pastel Disney',
-      tec='Acrylics and spray on canvas',     med='100 × 100 cm', usd=1950, buy='', vendida=False),
+      tec='Acrylics and spray on canvas',     med='100 × 100 cm', usd=2500, buy='', vendida=False),
  dict(slug='nothing-stays-the-same', titulo='Nothing Stays the Same',
       tec='Oil on canvas',                    med='100 × 120 cm', usd=1950, buy='', vendida=True),
  # recorte=True: la obra es redonda y su foto no es cuadrada, asi que dentro del
  # marco cuadrado quedaba flotando con franjas arriba y abajo. Con recorte llena
  # el marco y se le quita lo que sobra por arriba y por abajo.
  dict(slug='blue-thoughts-rat',    titulo='Blue Thoughts Rat',
-      tec='Acrylics and spray on canvas',     med='80 cm diameter', usd=1235, buy='',
+      tec='Acrylics and spray on canvas',     med='80 cm diameter', usd=1800, buy='',
       vendida=False, recorte=True),
  dict(slug='smiling-ratsquiat-blue-crown', titulo='Smiling Ratsquiat, Blue Crown',
-      tec='Acrylics and spray on canvas',     med='50 × 50 cm', usd=975, buy='', vendida=False),
+      tec='Acrylics and spray on canvas',     med='50 × 50 cm', usd=1500, buy='', vendida=False),
  dict(slug='oil-woodstock',        titulo='Oil Woodstock',
-      tec='Acrylics and oil on canvas',       med='50 × 50 cm', usd=975, buy='', vendida=False),
+      tec='Acrylics and oil on canvas',       med='50 × 50 cm', usd=1500, buy='', vendida=False),
  dict(slug='here-love',            titulo='Here, Love',
       tec='Acrylics and spray on canvas',     med='50 × 50 cm', usd=975, buy='', vendida=True),
  dict(slug='cloud-city-snoops',    titulo='Cloud City Snoops',
-      tec='Oil on canvas',                    med='50 × 50 cm', usd=1000, buy='', vendida=False),
+      tec='Oil on canvas',                    med='50 × 50 cm', usd=1500, buy='', vendida=False),
  dict(slug='new-york-street-snoops', titulo='New York Street Snoops',
-      tec='Acrylics and spray on canvas',     med='50 × 50 cm', usd=975, buy='', vendida=False),
+      tec='Acrylics and spray on canvas',     med='50 × 50 cm', usd=1500, buy='', vendida=False),
  dict(slug='city-rounds-icon',     titulo='City Rounds Icon',
-      tec='Oil on canvas',                    med='50 × 50 cm', usd=1000, buy='', vendida=False),
+      tec='Oil on canvas',                    med='50 × 50 cm', usd=1500, buy='', vendida=False),
  # ── entradas de agosto de 2026 ──
  # OJO JUAN: las tecnicas de estas tres las puse yo mirando las fotos.
  # Si alguna esta mal, se corrige aqui y solo aqui.
  dict(slug='city-famous-rat',      titulo='City Famous Rat',
-      tec='Acrylics and spray on canvas',     med='175 × 80 cm', usd=2600, buy='', vendida=False,
+      tec='Acrylics and spray on canvas',     med='175 × 80 cm', usd=3000, buy='', vendida=False,
       ancha=True),
  dict(slug='broken-icon',          titulo='Broken Icon',
-      tec='Acrylics and oil stick on canvas', med='100 × 100 cm', usd=1950, buy='', vendida=False),
+      tec='Acrylics and oil stick on canvas', med='100 × 100 cm', usd=2500, buy='', vendida=False),
  dict(slug='smiling-ratsquiat-yellow-crown', titulo='Smiling Ratsquiat, Yellow Crown',
-      tec='Acrylics and spray on canvas',     med='50 × 50 cm', usd=975, buy='', vendida=False),
+      tec='Acrylics and spray on canvas',     med='50 × 50 cm', usd=1500, buy='', vendida=False),
 ]
 
 # ── la tienda ────────────────────────────────────────────────────────────
@@ -110,24 +110,24 @@ OBRAS = [
 # Las ocho son crayon de oleo sobre papel, confirmado por Juan.
 TIENDA = [
  dict(slug='woodstocks-on-fire',   titulo='Woodstock’s on Fire',
-      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=250, buy='', vendida=False),
+      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=350, buy='', vendida=False),
  dict(slug='out-in-the-beach-rat', titulo='Out in the Beach Rat',
-      tec='Acrylic markers on USPS Label 228 sticker', med='Framed', usd=180, buy='', vendida=False),
+      tec='Acrylic markers on USPS Label 228 sticker', med='Framed', usd=350, buy='', vendida=False),
  dict(slug='out-in-the-city-woodstock', titulo='Out in the City, Woodstock',
-      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=250, buy='', vendida=False),
+      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=350, buy='', vendida=False),
  dict(slug='colour-pop-snoops',    titulo='Colour Pop Snoops',
-      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=250, buy='', vendida=False),
+      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=350, buy='', vendida=False),
  dict(slug='icon-kiss',            titulo='Icon Kiss',
-      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=250, buy='', vendida=False),
+      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=350, buy='', vendida=False),
  dict(slug='palometa-tribute',     titulo='Palometa Tribute',
-      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=250, buy='', vendida=False),
+      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=350, buy='', vendida=False),
  dict(slug='city-of-rats',         titulo='City of Rats',
-      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=250, buy='', vendida=False),
+      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=350, buy='', vendida=False),
  # OJO JUAN: de esta no te acordabas el material. Lo puse generico. Se corrige aqui.
  dict(slug='abstract-reality-icon', titulo='Abstract Reality Icon',
       tec='Mixed media on canvas', med='35 × 25 cm', usd=600, buy='', vendida=False),
  dict(slug='everything-will-be-ok-jules', titulo='Everything Will Be OK, Jules',
-      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=250, buy='', vendida=False),
+      tec='Oil pastel on high quality cotton paper', med='Framed 45 × 40 cm', usd=350, buy='', vendida=False),
 ]
 
 
@@ -1183,7 +1183,6 @@ home = cabeza(
     <div class="portada-obra">
       <img src="intro_photo.webp"
            alt="Juan Salazar, JUDASACA">
-      <div class="pie-obra">Juan Salazar</div>
     </div>
 
     <div class="entrada-home">
@@ -1927,9 +1926,15 @@ cv = cabeza(
       <div class="tit">
         <div class="eti">Curriculum</div>
         <h2>Exhibitions</h2>
-        <p>Juan Salazar · JUDASACA · born and based in Bogotá, Colombia.
-          {N_MUESTRAS} exhibitions across {N_PAISES} countries since {ANIO_0},
-          from Bogotá to New York, Tokyo and Lisbon.</p>
+        <p>Juan Salazar, known as JUDASACA, is a Colombian multidisciplinary artist
+          born and based in Bogotá, whose practice merges Pop Expressionism, urban art
+          and emerging technologies to explore identity, popular culture and the
+          evolving relationship between art and brands.</p>
+        <p>Since his international debut in Miami in 2021, his work has been featured
+          in exhibitions and artistic projects across the world, travelling from Japan
+          to Costa Rica, and reaching countries including Mexico, the United States,
+          Portugal and beyond. His work has also been showcased in New York’s iconic
+          Times Square.</p>
       </div>
 
       <div class="proximas">
